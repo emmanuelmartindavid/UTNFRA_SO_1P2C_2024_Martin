@@ -1,6 +1,22 @@
 #!/bin/bash
 #Particionamiento en 10 partes del disco.
-sudo fdisk /dev/sdb <<EOF
+lsblk
+read -p "Ingrese la letra de su disco a particionar, formatear y montar: " disco
+if [ "$disco" == "a" ]; then
+  echo "ERROR. No puede particionar este disco!"
+  exit 1
+
+fi
+if [ ! -d "/Examenes-UTN" ]; then 
+  echo "ERROR. Primero debe crear el directorio Examenes-UTN. Ejecute script Punto_A.!"
+  exit 1
+
+fi
+if ! lsblk | grep -q "^sd$disco"; then
+  echo "ERROR. El disco /dev/sd$disco no existe."
+  exit 1
+fi
+sudo fdisk /dev/sd$disco <<EOF
 n
 p
 
@@ -45,26 +61,25 @@ n
 w
 EOF
 
-#Da  formato Ext4 a las particiones, evitando sdb4, particion extendida.
 for i in {1..11}; do
   if [ $i -ne 4 ]; then
-     sudo mkfs -t ext4 /dev/sdb$i
+     sudo mkfs -t ext4 /dev/sd${disco}${i}
   fi
 done
 
-#Genera los mount en los respectivos directorios y genera el montaje de forma permanente, evitando a su vez el sdb4, particion extendida.
+
 alumno=1
 parcial=1
 
 for i in {1..11}; do
     if [ $i -eq 11 ]; then
-        sudo mount /dev/sdb$i /Examenes-UTN/profesores
-        echo "/dev/sdb$i /Examenes-UTN/profesores ext4 defaults 0 0" | sudo tee -a /etc/fstab
+        sudo mount /dev/sd${disco}${i} /Examenes-UTN/profesores
+        echo "/dev/sd${disco}${i} /Examenes-UTN/profesores ext4 defaults 0 0" | sudo tee -a /etc/fstab
     fi
 
     if [ $i -ne 4 ] && [ $i -ne 11 ]; then
-        sudo mount /dev/sdb$i /Examenes-UTN/alumno_$alumno/parcial_$parcial
-        echo "/dev/sdb$i /Examenes-UTN/alumno_$alumno/parcial_$parcial ext4 defaults 0 0" | sudo tee -a /etc/fstab
+        sudo mount /dev/sd${disco}${i} /Examenes-UTN/alumno_$alumno/parcial_$parcial
+        echo "/dev/sdb${disco}${i} /Examenes-UTN/alumno_$alumno/parcial_$parcial ext4 defaults 0 0" | sudo tee -a /etc/fstab
         parcial=$((parcial + 1))
 
         if [ $parcial -eq 4 ]; then
@@ -76,3 +91,9 @@ for i in {1..11}; do
 done
 
 sudo mount -a
+
+echo "Particiones:"
+lsblk | grep sdb
+echo "Puntos de montaje:"
+cat /etc/fstab | grep "sd"
+echo "Particion, formateo y montaje exitoso!"
