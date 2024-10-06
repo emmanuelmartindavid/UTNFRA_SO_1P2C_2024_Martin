@@ -1,0 +1,4 @@
+Mi IP Publica es: 190.49.80.0
+Mi usuarioes: osboxes
+El hash de mi Usuario es: $y$j9T$qhEBRUgELZ6aUXPI0/aEx/$hxyNAbxfwvhkceqg/IHmYlGcZk9dItipuurCa2pA0l9
+La url de mi repositorio es: git@github.com:emmanuelmartindavid/UTNFRA_SO_1P2C_2024_Martin.git
