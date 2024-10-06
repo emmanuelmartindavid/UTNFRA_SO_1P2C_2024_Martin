@@ -13,11 +13,21 @@ ssh-keygen -t ed25519
 ls -l
 ls -la
 ls -al ~/.ssh
+cat id_ed25519.pub
+cd .ssh/
+cat id_ed25519.pub 
+cd ..
+ssh -T git@github.com
+git config --global user.name "emmanuelmartindavid"
+git config --global user.email "emmanuel.david.martin77@gmail.com"
 ssh -T git@github.com
 ls
 mkdir repogit
 ls
 cd repogit/
+git clone https://github.com/upszot/UTN-FRA_SO_Examenes.git
+git clone git@github.com:emmanuelmartindavid/UTNFRA_SO_1P2C_2024_Martin.git
+ls
 cd UTNFRA_SO_1P2C_2024_Martin/
 tree
 cd ..
@@ -1502,4 +1512,447 @@ cd repogit/
 cd UTNFRA_SO_1P2C_2024_Martin/
 ls
 touch historial_comandos_Martin.txt
+ls
+cp $HOME/.bash_history historial_comandos_Martin.txt
+cat historial_comandos_Martin.txt 
+git status
+git add .
+git commit -m "ADD: agrego archivo con historial de comandos"
+git push
+nano historial_comandos_Martin.txt 
+git status
+git add .
+git commit -m "EDIT: edicion archivo de comandos"
+git push
+cd
+cd /
+ls
+cd
+lsblk
+sudo cat /etc/fstab
+cd repogit/
+cd UTNFRA_SO_1P2C_2024_Martin/
+cd RTA_SCRIPT_Examen_20241004/
+./Punto_A.sh 
+tree /Examenes-UTN/
+./Punto_B.sh 
+lsblk
+tree /Examenes-UTN/
+lsblk
+fdisk -l
+sudo fdisk -l
+./Punto_D.sh 
+cd /home/osboxes/
+cd ..
+cd
+cd repogit/
+cd UTNFRA_SO_1P2C_2024_Martin/
+cd RTA_SCRIPT_Examen_20241004/
+ls /home/osboxes/
+tree /home/osboxes/Estructura_Asimetrica/
+./Punto_E.sh 
+ls /home/osboxes/repogit/UTNFRA_SO_1P2C_2024_Martin/RTA_ARCHIVOS_Examen_20241004/
+cat /home/osboxes/repogit/UTNFRA_SO_1P2C_2024_Martin/RTA_ARCHIVOS_Examen_20241004/filtro_basico.txt 
+./Punto_F.sh 
+cat /home/osboxes/repogit/UTNFRA_SO_1P2C_2024_Martin/RTA_ARCHIVOS_Examen_20241004/filtro_avanzado.txt 
+./Punto_C.sh 
+tree /Examenes-UTN/
+su p1c2_2024_A1
+su p1c2_2024_A2
+su p1c2_2024_A3
+su p1c2_2024_A1
+su p1c2_2024_A2
+su p1c2_2024_P1
+tree /Examenes-UTN/
+ls
+cd
+cd repogit/
+ls
+cd
+cd pruebas/
+ls
+nano borraMount.sh 
+./borraMount.sh 
+./borraParticiones.sh 
+ls
+nano devuelvePermiso.sh 
+./devuelvePermiso.sh 
+/etc/grups
+/etc/grup
+cat /etc/grup
+cat /etc/group
+./borraUsuario.sh 
+cat /etc/group
+ls
+sudo nano /etc/fstab
+sudo rm -rf /Examenes-UTN/
+ls /
+sudo rm -rf /home/osboxes/Estructura_Asimetrica/
+ls /home/osboxes/
+lsblk
+exit
+lsblk
+cd /
+ls
+cd
+ls
+cd re
+cd repogit/
+cd UTNFRA_SO_1P2C_2024_Martin/
+cd RTA_SCRIPT_Examen_20241004/
+./Punto_A.sh 
+./Punto_B.sh 
+./Punto_C.sh 
+tree /Examenes-UTN/
+nano ./Punto_A.sh 
+cd
+cat .ssh/
+cd .ssh/
+cd
+lsblk
+cd pruebas/
+./borraMount.sh 
+./borraParticiones.sh 
+./borraUsuario.sh 
+nano /etc/fstab
+sudo nano /etc/fstab
+cd
+lsblk
+cd /
+ls
+tree /Examenes-UTN/
+sudo rem -rf /Examenes-UTN/
+sudo rm -rf /Examenes-UTN/
+cd
+ls
+cd repogit/
+cd UTNFRA_SO_1P2C_2024_Martin/
+cd RTA_SCRIPT_Examen_20241004/
+./Punto_D.sh 
+ls /home/osboxes/
+tree /home/osboxes/Estructura_Asimetrica/
+sudo rm -rf /home/osboxes/Estructura_Asimetrica/
+cd
+ls
+cd pruebas/
+ls
+nano puntoB.sh 
+cd
+cd repogit/
+cd UTNFRA_SO_1P2C_2024_Martin/
+cd RTA_SCRIPT_Examen_20241004/
+./Punto_A.sh 
+./Punto_B.sh 
+cd
+cd /
+tree /Examenes-UTN/
+cd
+cat << EOF > ./scriptPrecondiciones.sh
+#!/bin/bash
+TIMESTAMP=$(date +%Y%m%d)
+REPO_ALUMNO="UTNFRA_SO_1P2C_2024*"
+
+PATH_REPO_ALUMNO=$(find $HOME -iname $REPO_ALUMNO)
+
+if [ -z $PATH_REPO_ALUMNO ]; then
+
+    echo "Por Favor antes de ejecutar este script"
+    echo "clone su repositorio dentro de $HOME/repogit/"
+    exit 1
+fi
+
+mkdir -p ${PATH_REPO_ALUMNO}/{RTA_SCRIPT_Examen_${TIMESTAMP},RTA_ARCHIVOS_Examen_${TIMESTAMP}}
+touch ${PATH_REPO_ALUMNO}/RTA_SCRIPT_Examen_${TIMESTAMP}/Punto_{A..F}.sh
+
+# Habilita la opción para agregar nuevos comandos al final del historial de comandos.
+shopt -s histappend
+
+# Me aseguro que exista el archivo
+touch ~/.bash_history
+
+
+if [[ "$(lsattr "$HOME/.bash_history" | awk '{print $1}')" != *a* ]]; then
+    chmod 600 ~/.bash_history
+    sudo chattr +a ~/.bash_history
+fi
+
+if ! grep -cq "Configuración del historial de comandos"  ~/.bashrc ; then
+    # Agrega configuración al final del archivo .bashrc
+    cat << EOF >> ~/.bashrc
+
+###########################################################
+#     Configuración del historial de comandos 
+#---------------------------------------------------------#
+# Establece el tamaño máximo del historial en 10000 comandos.
+export HISTSIZE=10000
+# No hay límite en el tamaño del archivo de historial.
+export HISTFILESIZE=-1
+# Actualiza y sincroniza el historial de comandos entre sesiones.
+export PROMPT_COMMAND="history -a; history -c; history -r; \$PROMPT_COMMAND"
+###########################################################
+
+EOF
+
+fi
+# Recarga el archivo .bashrc para aplicar los cambios.
+. ~/.bashrc
+history -a
+echo 
+echo "Por favor ejecute: source  ~/.bashrc  && history -a "
+echo 
+ls
+nano scriptPrecondiciones.sh 
+mkdir repo
+cd repo
+git clone https://github.com/upszot/UTN-FRA_SO_Examenes.git
+git clone git@github.com:emmanuelmartindavid/Owner-avatar-UTNFRA_SO_1P2C_2024_Martine.git
+./UTN-FRA_SO_Examenes/202410/script_Precondicion.sh
+~/.bashrc && history -a
+sudo ~/.bashrc && history -a
+source ~/.bashrc && history -a
+ls
+cd Owner-avatar-UTNFRA_SO_1P2C_2024_Martine/
+ls
+cd ..
+sudo rm -rf Owner-avatar-UTNFRA_SO_1P2C_2024_Martine/
+git clone git@github.com:emmanuelmartindavid/Owner-avatar-UTNFRA_SO_1P2C_2024_Martine.git
+ls
+sudo rm -rf Owner-avatar-UTNFRA_SO_1P2C_2024_Martine/
+gi clone git@github.com:emmanuelmartindavid/UTNFRA_SO_1P2C_2024_Martine.git
+git clone git@github.com:emmanuelmartindavid/UTNFRA_SO_1P2C_2024_Martine.git
+./UTN-FRA_SO_Examenes/202410/script_Precondicion.sh
+~/.bashrc && history -a
+sudo ~/.bashrc && history -a
+source ~/.bashrc && history -a
+ls
+cd UTNFRA_SO_1P2C_2024_Martine/
+cd ..
+tree UTNFRA_SO_1P2C_2024_Martine/
+cd UTNFRA_SO_1P2C_2024_Martine/
+ls RTA_ARCHIVOS_Examen_20241006/
+cd
+cd repo
+cd
+cd repogit/
+source ~/.bashrc && history -a
+ls
+cd UTNFRA_SO_1P2C_2024_Martin/
+tree
+git status
+sudo rm -rf RTA_ARCHIVOS_Examen_20241006
+sudo rm -rf RTA_SCRIPT_Examen_20241006
+tree
+cat historial_comandos_Martin.txt 
+ls
+tree
+cd RTA_ARCHIVOS_Examen_20241004/
+cat filtro_basico.txt 
+cat filtro_avanzado.txt 
+cd ..
+git remote get-url origin 
+git status
+cd RTA_SCRIPT_Examen_20241004/
+nano ./Punto_B.sh 
+cd
+ls
+cd pruebas/
+ls
+lsblk
+./borraMount.sh 
+./borraParticiones.sh 
+cat /etc/group
+sudo nano /etc/fstab
+nano ./puntoB.sh 
+lsblk
+nano ./puntoB.sh 
+./puntoB.sh 
+lsblk
+./borraParticiones.sh 
+nano ./puntoB.sh 
+./puntoB.sh 
+./borraParticiones.sh 
+nano ./puntoB.sh 
+./puntoB.sh 
+lsblk
+fdisk /dev/sda
+sudo fdisk /dev/sda
+lsblk
+nano ./puntoB.sh 
+./puntoB.sh 
+nano ./puntoB.sh 
+tree /Examenes-UTN/
+sudo rm -rf /Examenes-UTN/
+lsblk
+./puntoB.sh 
+cd /
+cd
+cd pruebas/
+./borraMount.sh 
+./borraParticiones.sh 
+cat etc/fstab
+cat /etc/fstab
+sudo nano /etc/fstab
+lsblk
+./puntoA.sh 
+./puntoB.sh 
+./borraMount.sh 
+./borraParticiones.sh 
+sudo nano /etc/fstab 
+nano ./puntoB.sh 
+ls /Examenes-UTN/
+sudo rm -rf /Examenes-UTN/
+lsblk
+./puntoB.sh 
+ls /
+lsblk
+nano ./puntoB.sh 
+./puntoB.sh 
+nano puntoB.sh 
+./puntoA.sh 
+./puntoB.sh 
+lsblk | grep sdb
+nano puntoB.sh 
+./borraMount.sh 
+./borraParticiones.sh 
+cat /etc/fstab
+nano /etc/fstab
+sudo nano /etc/fstab
+./puntoB.sh 
+./borraMount.sh 
+./borraParticiones.sh 
+sudo nano /etc/fstab
+nano puntoB.sh 
+./puntoB.sh 
+cat /etc/fstab | grep "sd
+
+cat /etc/fstab | grep "sd"
+./borraMount.sh 
+./borraParticiones.sh 
+sudo nano /etc/fstab 
+nano puntoB.sh 
+./puntoB.sh 
+./borraMount.sh 
+./borraParticiones.sh 
+sudo nano /etc/fstab 
+nano puntoB.sh 
+cd 
+cd repo
+cd
+cd repogit/
+cd UTNFRA_SO_1P2C_2024_Martin/
+cd RTA_SCRIPT_Examen_20241004/
+nano ./Punto_B.sh 
+lsblk
+cat /etc//fstab 
+cat /etc/fstab 
+sudo rm -rf /Examenes-UTN/
+./Punto_B.sh 
+nano ./Punto_B.sh 
+./Punto_A.sh 
+./Punto_B.sh 
+cd ..
+git status
+git add .
+git commit -m "EDIT: Agrego funcionalidad para elegir disco y agrego validaciones basicos en Punto_B"
+git push
+cd RTA_SCRIPT_Examen_20241004/
+nano ./Punto_B.sh 
+pwd
+bash /home/osboxes/pruebas/borraMount.sh 
+bash /home/osboxes/pruebas/borraParticiones.sh 
+sudo nano /etc/fstab 
+./Punto_B.sh 
+bash /home/osboxes/pruebas/borraMount.sh 
+bash /home/osboxes/pruebas/borraParticiones.sh 
+sudo nano /etc/fstab 
+nano ./Punto_C.sh 
+nano ./Punto_B..sh 
+ls
+tree
+nano ./Punto_B.sh 
+lsblk
+sudo rm -rf /Examenes-UTN/
+./Punto_C.sh 
+cd .
+cd ..
+git status
+git add .
+git commit -m "FEAT: agrego validacion en script Punto_C"
+git push
+cd
+mkdir -p /home/osboxes/{carta{1..5},carta2{1..4/perro{1..2}}}
+ls
+sudo rm -rf carta1
+sudo rm -rf carta2
+sudo rm -rf carta3
+sudo rm -rf carta4
+sudo rm -rf carta5
+ls
+sudo rm -rf carta2\{1..4/
+ls
+mkdir -p /home/osboxes/cartas/{carta{1..5},carta2{1..4}/perro{1..2}}}
+ls
+tree cartas/
+sudo rm -rf cartas/
+mkdir -p /home/osboxes/cartas/{carta{1..5},carta2{1..4}/perro{1..2}}
+tree cartas/
+mkdir -p /home/osboxes/cartas/{carta{1..5},{carta2{1..4}/perro{1..2}}}
+ls
+tree cartas/
+sudo rm -rf cartas/
+mkdir -p /home/osboxes/cartas/{carta{1..5},{carta2{1..4}/perro{1..2}}}
+tree cartas/
+mkdir -p /home/osboxes/cartas/{carta{1..5},{carta_DOS{1..4},perro{1..2}}}
+tree cartas/
+sudo rm -rf cartas/
+mkdir -p /home/osboxes/cartas/{carta{1..5},{carta_DOS{1..4},perro{1..2}}}
+tree cartas/
+sudo rm -rf cartas/
+mkdir -p /home/osboxes/cartas/{carta{1..5},{cliente/carta_DOS{1..4},perro{1..2}}}
+tree cartas/
+mkdir -p /home/osboxes/cartas/{correo/carta{1..5},{cliente/carta_DOS{1..4},perro{1..2}}}
+sudo rm -rf cartas/
+mkdir -p /home/osboxes/cartas/{correo/carta{1..5},{cliente/carta_DOS{1..4},perro{1..2}}}
+tree cartas/
+sudo rm -rf cartas/
+mkdir -p /home/osboxes/cartas/{correo/carta{1..5},{cliente/carta_DOS{1..4}/perro{1..2}}}
+tree cartas/
+sudo rm -rf cartas/
+cd pruebas/
+cd
+ls
+sudo rm -rf repo
+cd pruebas/
+./puntoD.sh 
+cd
+tree Estructura_Asimetrica/
+tree Estructura_Asimetrica/ --noreport | pr -T -s' ' -w 80 --column 4
+tree Estructura_Asimetrica/
+mkdir -p /home/osboxes/cartas/{correo/carta{1..5},{cliente/carta_DOS{1..4}/perro{1..2}}}
+tree cartas/
+sudo rm -rf cartas/
+mkdir -p /home/osboxes/cartas/{correo/carta{1..5},{cliente/carta_DOS{1..4},perro{1..2}}}
+tree cartas/
+sudo rm -rf cartas/
+mkdir -p /home/osboxes/cartas/{correo/carta{1..5},cliente/{carta_DOS{1..4},perro{1..2}}}
+tree cartas/
+mkdir -p /home/osboxes/cartas/{correo/carta{1..5},cliente/{carta_DOS{1..4},perro{1..2}/gato}}
+sudo rm -rf cartas/
+mkdir -p /home/osboxes/cartas/{correo/carta{1..5},cliente/{carta_DOS{1..4},perro{1..2}/gato}}
+tree cartas/
+sudo rm -rf cartas/
+mkdir -p /home/osboxes/cartas/{correo/carta{1..5},cliente/{carta_DOS{1..4},perro{1..2},gato}}
+tree cartas/
+sudo rm -rf cartas/
+mkdir -p /home/osboxes/cartas/{correo/carta{1..5},cliente/{carta_DOS{1..4},perro{1..2}/{gato}}}
+sudo rm -rf cartas/
+mkdir -p /home/osboxes/cartas/{correo/carta{1..5},cliente/{carta_DOS{1..4},perro{1..2}/{gato}}}
+tree cartas/
+sudo rm -rf cartas/
+cd repogit/
+cd UTNFRA_SO_1P2C_2024_Martin/
+git status
+tree
+history
+history -a
 ls
