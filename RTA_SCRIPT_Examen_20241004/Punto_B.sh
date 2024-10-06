@@ -8,7 +8,7 @@ if [ "$disco" == "a" ]; then
 
 fi
 if [ ! -d "/Examenes-UTN" ]; then 
-  echo "ERROR. Primero debe crear el directorio Examenes-UTN. Ejecute script Punto_A.!"
+  echo "ERROR. Primero debe crear el directorio Examenes-UTN. Ejecute script Punto_A!"
   exit 1
 
 fi
@@ -93,7 +93,7 @@ done
 sudo mount -a
 
 echo "Particiones:"
-lsblk | grep sdb
+lsblk | grep sd$disco
 echo "Puntos de montaje:"
 cat /etc/fstab | grep "sd"
 echo "Particion, formateo y montaje exitoso!"

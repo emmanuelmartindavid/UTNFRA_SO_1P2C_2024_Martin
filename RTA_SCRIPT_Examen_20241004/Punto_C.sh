@@ -1,5 +1,10 @@
 #!/bin/bash
 #Genera los usuarios con su respectivo grupo y agrega a su vez la contrasenia de en este caso osboxes.
+if [ ! -d "/Examenes-UTN" ]; then 
+  echo "ERROR. Primero debe crear el directorio Examenes-UTN. Ejecute script Punto_A!"
+  exit 1
+
+fi
 sudo groupadd p1c2_2024_gAlumno
 sudo useradd -m -s /bin/bash -c "Alumno p1c2_2024_A1" -G p1c2_2024_gAlumno -p "$(sudo grep osboxes /etc/shadow | awk -F ':' '{print $2}')" p1c2_2024_A1
 sudo useradd -m -s /bin/bash -c "Alumno p1c2_2024_A2" -G p1c2_2024_gAlumno -p "$(sudo grep osboxes /etc/shadow | awk -F ':' '{print $2}')" p1c2_2024_A2
