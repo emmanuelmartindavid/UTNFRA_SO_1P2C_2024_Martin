@@ -1,0 +1,1515 @@
+sudo apt update && sudo apt upgrade -y
+sudo reboot
+sudo apt install build-essential dkms linux-headers-$(uname -r)
+sudo reboot
+sudo mount /dev/cdrom /mnt
+cd /mnt
+sudo ./VBoxLinuxAdditions.run
+cd ..
+sudo reboot
+ls -al ~/.ssh
+sudo ls -al ~/.ssh
+ssh-keygen -t ed25519
+ls -l
+ls -la
+ls -al ~/.ssh
+cat id_ed25519.pub
+cd .ssh/
+cat id_ed25519.pub 
+cd ..
+ssh -T git@github.com
+git config --global user.name "emmanuelmartindavid"
+git config --global user.email "emmanuel.david.martin77@gmail.com"
+ssh -T git@github.com
+ls
+mkdir repogit
+ls
+cd repogit/
+git clone https://github.com/upszot/UTN-FRA_SO_Examenes.git
+git clone git@github.com:emmanuelmartindavid/UTNFRA_SO_1P2C_2024_Martin.git
+ls
+cd UTNFRA_SO_1P2C_2024_Martin/
+tree
+cd ..
+sudo apt install tree
+cd repogit/
+cd UTNFRA_SO_1P2C_2024_Martin/
+tree
+git status
+cd ..
+mkdir pruebas
+ls
+cd pruebas/
+cat << EOF > borraMount.sh
+#!/bin/bash
+sudo umount /mis_directorios/alumno_1/parcial_1
+sudo umount /mis_directorios/alumno_1/parcial_2
+sudo umount /mis_directorios/alumno_1/parcial_3
+sudo umount /mis_directorios/alumno_2/parcial_1
+sudo umount /mis_directorios/alumno_2/parcial_2
+sudo umount /mis_directorios/alumno_2/parcial_3
+sudo umount /mis_directorios/alumno_3/parcial_1
+sudo umount /mis_directorios/alumno_3/parcial_2
+sudo umount /mis_directorios/alumno_3/parcial_3
+sudo umoun
+EOF
+
+chmod 755 borraMount.sh 
+nano borraMount.sh 
+cat << EOF > puntoB.sh
+#!/bin/bash
+#Particionamiento en 10 partes del disco.
+sudo fdisk /dev/sdb <<EOF
+n
+p
+
+
++1G
+n
+p
+
+
++1G
+n
+p
+
+
++1G
+n
+e
+
+
+
+n
+
++1G
+n
+
++1G
+n
+
++1G
+n
+
++1G
+n
+
++1G
+n
+
++1G
+n
+
+
+w
+EOF
+
+for i in {1..11}; do   if [ $i -ne 4 ]; then 	sudo mkfs -t ext4 /dev/sdb$i;   fi; done
+AC=1
+PC=1
+for i in {1..11}; do   if [ $i -ne 4 ]; then      sudo mount /dev/sdb$i /mis_directorios/alumno_$AC/parcial_$PC;      PC=$((PC + 1));      if [ $PC -eq 4 ]; then         PC=1;         AC=$((AC + 1));      fi;   fi; done
+lsblk
+ls
+cat puntoB.sh 
+chmod 755 puntoB.sh 
+nano puntoB.sh 
+touch borraParticiones.sh
+cat borraParticiones.sh 
+nano borraParticiones.sh 
+chmod 755 borraParticiones.sh 
+cat << EOF > puntoA.sh
+#!/bin/bash
+#sudo mkdir -p / {alumno_1/parcial_{1..3},alumno_2/parcial_{1..3},alumno_3/parcial_{1..3},profesor} 
+sudo mkdir -p /mis_directorios/{alumno_1/parcial_{1..3},alumno_2/parcial_{1..3},alumno_3/parcial_{1..3},profesor}
+EOF
+
+chmod 755 puntoA.sh 
+nano puntoA.sh 
+exit
+lsblk
+cd pruebas/
+ls
+./puntoA.sh 
+cd /
+ls
+cd mis_directorios/
+tree
+cd
+cd pruebas/
+./puntoB.sh 
+cd /
+mount | grep "mis_directorios" 
+cd
+lsblk
+cd pruebas/
+./borraParticiones.sh 
+./borraMount.sh 
+sudo reboot
+cd /
+mount | grep "mis_directorios" 
+cd
+lsblk
+cd pruebas/
+nano puntoB.sh 
+./puntoB.sh 
+lsblk
+cd /
+mount | grep "mis_directorios" 
+cd
+cd pruebas/
+./borraParticiones.sh 
+./borraMount.sh 
+nano ./puntoB.sh 
+./puntoB.sh 
+cd /
+mount | grep "mis_directorios" 
+cd mis_directorios/
+tree
+cd
+cd pruebas/
+./borraMount.sh 
+./borraParticiones.sh 
+lsblk
+cd /
+mount | grep "mis_directorios" 
+cd
+cd pruebas/
+nano ./puntoB.sh 
+./puntoB.sh 
+cd /
+mount | grep "mis_directorios" 
+cd mis_directorios/
+tree
+cd
+cd pruebas/
+./borraParticiones.sh 
+./borraMount.sh 
+nano ./puntoB.sh 
+ls
+cd ..
+ls
+cd repogit/
+ls
+cd ..
+./UTN-FRA_SO_Examenes/202410/script_Precondicion.sh ~/.bashrc && history -a
+cd repogit/
+sudo rm -r UTNFRA_SO_1P2C_2024_Martin/
+sudo rm -r UTN-FRA_SO_Examenes/
+git clone https://github.com/upszot/UTN-FRA_SO_Examenes.git
+git clone git@github.com:emmanuelmartindavid/UTNFRA_SO_1P2C_2024_Martin.git
+./UTN-FRA_SO_Examenes/202410/script_Precondicion.sh
+~/.bashrc && history -a
+sudo ~/.bashrc && history -a
+cd UTNFRA_SO_1P2C_2024_Martin/
+tree
+git clone 
+git status
+cd ..
+sudo rm -r UTNFRA_SO_1P2C_2024_Martin/
+ls
+git clone git@github.com:emmanuelmartindavid/UTNFRA_SO_1P2C_2024_Martin.git
+sudo ./UTN-FRA_SO_Examenes/202410/script_Precondicion.sh
+sudo ~/.bashrc && history -a
+ls
+sudo rm -r UTNFRA_SO_1P2C_2024_Martin/
+sudo rm -r UTN-FRA_SO_Examenes/
+git clone https://github.com/upszot/UTN-FRA_SO_Examenes.git
+git clone git@github.com:emmanuelmartindavid/UTNFRA_SO_1P2C_2024_Martin.git
+ls
+sudo ./UTN-FRA_SO_Examenes/202410/script_Precondicion.sh
+sudo ~/.bashrc && history -a
+sudo rm -r UTNFRA_SO_1P2C_2024_Martin/
+sudo rm -r UTN-FRA_SO_Examenes/
+ls
+git clone git clone https://github.com/upszot/UTN-FRA_SO_Examenes.git
+git clone https://github.com/upszot/UTN-FRA_SO_Examenes.git
+ls
+git clone git@github.com:emmanuelmartindavid/UTNFRA_SO_1P2C_2024_Martin.git
+./UTN-FRA_SO_Examenes/202410/script_Precondicion.sh
+~/.bashrc && history -a
+cd UTNFRA_SO_1P2C_2024_Martin/
+tree
+~/.bashrc && history -a
+tree
+cd ..
+~/.bashrc && history -a
+cd UTNFRA_SO_1P2C_2024_Martin/
+tree
+cd RTA_ARCHIVOS_Examen_20241004/
+ls
+tree
+cd ..
+sudo ~/.bashrc && history -a
+~/.bashrc && history -a
+cd UTNFRA_SO_1P2C_2024_Martin/
+tree
+git status
+nano README.md 
+git status
+git add .
+git commit -m "ADD: script precondiciones para parcial y datos de README" 
+git push
+tree
+cd ..
+~/.bashrc && history -a
+sudo ~/.bashrc && history -a
+cd ..
+ls
+cd pruebas/
+ls
+nano puntoB.sh 
+cd /
+mount | grep "mis_directorios/"
+cd 
+lsblk
+mount | grep "mis_directorios" 
+cd /
+mount | grep "mis_directorios" 
+cd 
+lsblk
+cd pruebas/
+./borraParticiones.sh 
+./borraMount.sh 
+./puntoB
+./puntoB.sh 
+cd /
+mount | grep "mis_directorios" 
+cd 
+lsblk
+sudo reboot
+lsblk
+cd /
+mount | grep "mis_directorios" 
+cd
+cd pruebas/
+./borraParticiones.sh 
+./borraMount.sh 
+cd /
+mount | grep "mis_directorios" 
+sudo umount /dev/sdb1 /mis_directorios/alumno_/parcial_
+mount | grep "mis_directorios" 
+cd
+sudo reboot
+cd /
+mount | grep "mis_directorios" 
+cd 
+cd pruebas/
+nano ./puntoB.sh 
+./puntoB.sh 
+cd /
+mount | grep "mis_directorios" 
+cd
+cd pruebas/
+nano ./puntoB.sh 
+./borraParticiones.sh 
+./borraMount.sh 
+cd /
+mount | grep "mis_directorios" 
+sudo umount /dev/sdb1 /mis_directorios/alumno_/parcial_
+sudo umount /dev/sdb2 /mis_directorios/alumno_/parcial_
+sudo umount /dev/sdb3 /mis_directorios/alumno_/parcial_
+sudo umount /dev/sdb4 /mis_directorios/alumno_/parcial_
+sudo umount /dev/sdb5 /mis_directorios/alumno_/parcial_
+sudo umount /dev/sdb6 /mis_directorios/alumno_/parcial_
+sudo umount /dev/sdb7 /mis_directorios/alumno_/parcial_
+sudo umount /dev/sdb8 /mis_directorios/alumno_/parcial_
+sudo umount /dev/sdb9 /mis_directorios/alumno_/parcial_
+sudo umount /dev/sdb10 /mis_directorios/alumno_/parcial_
+mount | grep "mis_directorios"
+cd mis_directorios/
+tree
+sudo rm -rf alumno_
+tree
+cd
+cd pruebas/
+./puntoB.sh 
+cd /
+mount | grep "mis_directorios"
+cd
+cd pruebas/
+nano ./puntoB.sh 
+./borraMount.sh 
+./borraParticiones.sh 
+./puntoB.sh 
+cd /
+mount | grep "mis_directorios"
+cd
+cd pruebas/
+./borraParticiones.sh 
+./borraMount.sh 
+./borraParticiones.sh 
+nano ./puntoB.sh 
+./puntoB.sh 
+nano ./puntoB.sh 
+cd /
+mount | grep "mis_directorios"
+cd
+cd pruebas/
+./borraMount.sh 
+./borraParticiones.sh 
+./puntoB.sh 
+nano ./puntoB.sh 
+lsblk
+cd /
+mount | grep "mis_directorios"
+cd 
+cd pruebas/
+./borraMount.sh 
+./borraParticiones.sh 
+cd 
+mount | grep "mis_directorios"
+cd pruebas/
+./puntoB.sh 
+dmesg
+sudo dmesg
+cd /
+mount | grep "mis_directorios"
+cd 
+cd pruebas/
+./borraMount.sh 
+./borraParticiones.sh 
+cd /
+sudo rm -rf mis_directorios/
+ls
+cd proc/
+cd
+cd pruebas/
+nano ./puntoA.sh 
+nano ./puntoB.sh 
+./puntoA.sh 
+./puntoB.sh 
+nano ./puntoB.sh 
+./borraMount.sh 
+./borraParticiones.sh 
+nano ./borraMount.sh 
+cd /
+mount | grep "mis_directorios"
+cd 
+cd pruebas/
+nano ./borraMount.sh 
+./borraMount.sh 
+cd /
+mount | grep "mis_directorios"
+cd
+exit
+lsblk
+cd pruebas/
+./puntoA.sh 
+cd /
+cd mis_directorios/
+tree
+cd
+cd pruebas/
+./puntoB.sh 
+lsblk
+cd ..
+sudo reboot
+lsblk
+cd pruebas/
+nano ./puntoB.sh 
+nano ./puntoA.sh 
+./borraMount.sh 
+cd /
+mount | grep "mis_directorios"
+sudo mount /dev/sdb1 /mis_directorios/alumno_/parcial_
+sudo umount /dev/sdb1 /mis_directorios/alumno_/parcial_
+mount | grep "mis_directorios"
+sudo umount /dev/sdb1 /mis_directorios/profesor
+mount | grep "mis_directorios"
+cd
+cd pruebas/
+./puntoA.sh 
+cd /
+ls
+sudo rm -rf mis_directorios/
+cd
+lsblk
+cd pruebas/
+./borraParticiones.sh 
+./
+./puntoA.sh 
+./puntoB.sh 
+nano ./puntoB.sh 
+nano ./puntoA
+nano ./puntoA.sh 
+nano ./puntoB.sh 
+nano ./puntoA.sh 
+cd ..
+cat /etc/fstab
+dmesg | grep -i "mount"
+cd /
+dmesg | grep -i "mount"
+sudo dmesg | grep -i "mount"
+cd
+sudo reboot
+lsblk
+cd pruebas/
+ls
+nano ./borraMount.sh 
+nano ./borraParticiones.sh.sh 
+nano ./borraParticiones.sh
+nano ./puntoA.sh 
+nano ./puntoB.sh 
+cd /
+mount | grep "mis_directorios"
+cd
+cd pruebas/
+./borraMount.sh 
+./borraParticiones.sh 
+cd /
+mount | grep "mis_directorios"
+sudo umount /dev/sdb1 /mis_directorios/alumno_/parcial_
+sudo umount /dev/sdb11 /mis_directorios/profesor
+mount | grep "mis_directorios"
+sudo rm -rf mis_directorios/
+cd
+cd pruebas/
+nano ./puntoB.sh 
+./puntoA.sh 
+cd /
+ls
+cd mis_directorios/
+tree
+cd
+sudo reboot
+cd pruebas/
+nano ./puntoB.sh 
+./puntoB.sh 
+lsblk
+cd /
+mount | grep "mis_directorios"
+cd
+sudo reboot
+lsblk
+cd pruebas/
+nano ./puntoB.sh 
+cd /
+mount | grep "mis_directorios"
+sudo umount /dev/sdb1 /mis_directorios/alumno_1/parcial_1
+sudo umount /dev/sdb11 /mis_directorios/profesor
+mount | grep "mis_directorios"
+cd 
+cd pruebas/
+./borraMount.sh 
+./borraParticiones.sh 
+cd /
+sudo rm -rf mis_directorios/
+cd
+cd pruebas/
+nano ./puntoB.sh 
+./puntoA.sh 
+./puntoB.sh 
+cd
+sudo reboot
+cd pruebas/
+nano ./puntoB.sh 
+cd /
+mount | grep "mis_directorios"
+sudo umount /dev/sdb11 /mis_directorios/profesor
+mount | grep "mis_directorios"
+sudo nano /etc/fstab
+sudo umount /dev/sdb1 /mis_directorios/alumno_/parcial_
+mount | grep "mis_directorios"
+cd
+cd pruebas/
+./borraMount.sh 
+./borraParticiones.sh 
+cd /
+sudo nano /etc/fstab
+cd 
+cd pruebas/
+nano ./puntoB.sh 
+lsblk
+cd /
+sudo rm -rf /mis_directorios/
+cd
+cd pruebas/
+./puntoA.sh 
+./puntoB.sh 
+lsblk
+cd /
+mount | grep "mis_directorios"
+sudo nano /etc/fstab
+cd
+sudo reboot
+lsblk
+cd pruebas/
+cat << EOF > puntoC.sh
+#!/bin/bash
+EOF
+
+chmod 755 puntoC.sh 
+ls
+lsblk
+nano puntoC.sh 
+cd
+pwd
+grep osboxes /etc/shadow | awk -F ':' '{print $2}'
+sudo grep osboxes /etc/shadow | awk -F ':' '{print $2}'
+sudo grep osboxes /etc/shadow | awk -F ':' '{print}'
+cd pruebas/
+nano puntoC.sh 
+./puntoC.sh 
+cd
+ls -l /home
+nano puntoC.sh 
+nano ./puntoC.sh 
+ls
+ls -la
+cd pruebas/
+nano ./puntoC.sh 
+./puntoC.sh 
+ls -l /home
+ls -la /home
+nano puntoC.sh 
+./puntoC.sh 
+ls -la /home
+sudo userdel -r p1c2_2024_A1
+ls -la /home
+sudo groupdel p1c2_2024_gAlumno
+./puntoC.sh 
+ls -la /home
+cd
+tail /etc/passwd
+cat /etc/group
+cd pruebas/
+cd
+sudo userdel -r p1c2_2024_A1
+sudo groupdel p1c2_2024_gAlumno
+cat /etc/group
+cd pruebas/
+cat << EOF > borraUsuario.sh
+#!/bin/bash
+cat << EOF > borraUsuario.sh
+#!/bin/bash
+EOF
+
+nano ./borraUsuario.sh 
+chmod 755 ./borraUsuario.sh 
+./puntoC.sh 
+cat /etc/group
+./borraUsuario.sh 
+cat /etc/group
+nano ./puntoC.sh 
+./puntoC.sh 
+cat /etc/group
+./borraUsuario.sh 
+cat /etc/group
+nano ./puntoC.sh 
+sudo grep osboxes /etc/shadow | awk -F ':' '{print $2}'
+nano ./puntoC.sh 
+cat /etc/group
+./puntoC.sh 
+./borraUsuario.sh 
+cat /etc/group
+nano ./puntoC.sh 
+./puntoC.sh 
+su P1c2_2024_A1
+cd
+su P1c2_2024_A1
+cat /etc/group
+su p1c2_2024_A1 
+cd pruebas/
+nano ./puntoC.sh 
+cat /etc/group
+./borraUsuario.sh 
+./puntoC.sh 
+su p1c2_2024_A1 
+sudo grep osboxes /etc/shadow | awk -F ':' '{print}'
+sudo grep osboxes /etc/shadow | awk -F ':' '{print $2 }'
+nano ./puntoC.sh 
+./borraUsuario.sh 
+./puntoC.sh 
+cat /etc/group
+./borraUsuario.sh 
+sudo kill 3242
+./borraUsuario.sh 
+cat /etc/group
+sudo pkill -u p1c2_2024_A1
+cat /etc/group
+./borraUsuario.sh 
+cat /etc/group
+./borraUsuario.sh 
+exit
+su p1c2_2024_A1 
+./borraUsuario.sh 
+cat /etc/group
+./puntoC.sh 
+cat /etc/group
+./borraUsuario.sh 
+nano ./puntoC.sh 
+cat /etc/group
+./puntoC.sh 
+./borraUsuario.sh 
+nano ./puntoC.sh 
+./puntoC.sh 
+./borraUsuario.sh 
+nano ./puntoC.sh 
+./borraUsuario.sh 
+./puntoC.sh 
+nano ./puntoC.sh 
+cat /etc/group
+./borraUsuario.sh 
+nano ./puntoC.sh 
+cat /etc/group
+./puntoC.sh 
+su p1c2_2024_A1 
+nano ./puntoC.sh 
+./borraUsuario.sh 
+./puntoC.sh 
+su p1c2_2024_A1 
+nano ./puntoC.sh 
+./borraUsuario.sh 
+./puntoC.sh 
+su p1c2_2024_A1 
+./borraUsuario.sh 
+nano ./puntoC.sh 
+./puntoC.sh 
+./borraUsuario.sh 
+nano ./puntoC.sh 
+./borraUsuario.sh 
+./puntoC.sh 
+su p1c2_2024_A1 
+./borraUsuario.sh 
+nano ./puntoC.sh 
+nano ./borraUsuario.sh 
+./borraUsuario.sh 
+exit
+cd pruebas/
+cat /etc/group
+./puntoC.sh 
+./borraUsuario.sh 
+cat /etc/group
+nano ./borraUsuario.sh 
+./borraUsuario.sh 
+nano ./borraUsuario.sh 
+nano ./puntoC.sh 
+./puntoC.sh 
+cat /etc/group
+nano ./puntoC.sh 
+./puntoC.sh 
+./borraUsuario.sh 
+nano ./borraUsuario.sh 
+cat /etc/group
+nano ./borraUsuario.sh 
+./borraUsuario.sh 
+cat /etc/group
+./puntoC.sh 
+cat /etc/group
+su p1c2_2024_P1 
+./borraUsuario.sh 
+cat /etc/group
+nano ./puntoC.sh 
+cd
+cd repogit/
+cd UTNFRA_SO_1P2C_2024_Martin/
+tree
+cd RTA_ARCHIVOS_Examen_20241004/
+cd ..
+ls
+cd UTN-FRA_SO_Examenes/
+ls
+cd 20230521/
+tree
+cd ..
+cd UTNFRA_SO_1P2C_2024_Martin/
+tree
+git status
+cd ..
+cd pruebas/
+cd /
+nano /etc/fstab
+cd
+cd pruebas/
+ls
+nano borraMount.sh 
+./borraMount.sh 
+./borraParticiones.sh 
+nano borraMount.sh 
+nano /etc/fstab
+sudo nano /etc/fstab
+cd /
+sudo rm -rf /mis_directorios/
+cd
+sudo reboot
+chmod 777 /media/sf_shared
+lsblk
+cd/ 
+cd /
+mount 
+ccd
+cd proc/
+cd .
+cd ..
+cd
+cd pruebas/
+nano puntoA.sh 
+ls
+nano ./borraMount.sh 
+nano ./borraParticiones.sh.sh 
+nano ./borraParticiones.sh
+nano ./puntoB.sh 
+nano /etc/fstab
+cd ..
+cd pruebas/
+./puntoA.sh 
+cd /
+ls
+cd Examenes-UTN/
+tree
+cd ..
+cd
+cd repogit/
+cd UTNFRA_SO_1P2C_2024_Martin/
+tree
+cd
+cd pruebas/
+./puntoB.sh 
+lsblk
+nano /etc/fstab
+lsblk -l
+cat /etc/group
+ls
+nano ./puntoC.sh 
+lsblk
+./puntoC.sh 
+cd
+ls -l
+su p1c2_2024_A1
+cat /etc/group
+cd pruebas/
+./borraUsuario.sh 
+cat /etc/group
+nano ./puntoC.sh 
+./puntoC.sh 
+su p1c2_2024_A1
+cat /etc/group
+./borraUsuario.sh 
+nano ./puntoC.sh 
+./puntoC.sh 
+./borraUsuario.sh 
+cd
+ls -l /etc/sudoers.d
+cat /etc/sudoers
+sudo cat /etc/sudoers
+cd pruebas/
+nano ./puntoC.sh 
+cat /etc/sudoers
+sudo cat /etc/sudoers
+cat /etc/group
+./puntoC.sh 
+./borraUsuario.sh 
+nano ./puntoC.sh 
+./puntoC.sh 
+ls -ld /Examenes-UTN/alumno_1
+./borraUsuario.sh 
+ls -ld /Examenes-UTN/alumno_1
+cat /etc/group
+nano ./puntoC.sh 
+cat /etc/group
+./puntoC.sh 
+./borraUsuario.sh 
+nano ./puntoC.sh 
+./puntoC.sh 
+ls -ld /Examenes-UTN
+ls -ld /Examenes-UTN/
+ls -ld /Examenes-UTN/alumno_1
+ls -ld /Examenes-UTN/alumno_2
+ls -ld /Examenes-UTN/alumno_3
+ls -ld /Examenes-UTN/profesores
+./borraUsuario.sh 
+ls -ld /Examenes-UTN/alumno_2
+nano ./puntoC.sh 
+./puntoC.sh 
+./borraUsuario.sh 
+nano ./puntoC.sh 
+./puntoC.sh 
+ls -ld /Examenes-UTN/alumno_2
+ls -ld /Examenes-UTN/alumno_3
+./borraUsuario.sh 
+nano ./puntoC.sh 
+cd /
+cd Examenes-UTN/
+tree
+cd 
+cd pruebas/
+./borraUsuario.sh 
+ls -ld /Examenes-UTN/alumno_2
+sudo chown -R osboxes:osboxes /Examenes-UTN/alumno_1
+sudo chown -R osboxes:osboxes /Examenes-UTN/alumno_2
+sudo chown -R osboxes:osboxes /Examenes-UTN/alumno_3
+sudo chown -R osboxes:osboxes /Examenes-UTN/profesores
+sudo chmod -R 770 /Examenes-UTN/alumno_1
+sudo chmod -R 770 /Examenes-UTN/alumno_2
+sudo chmod -R 770 /Examenes-UTN/alumno_3
+sudo chmod -R 770 /Examenes-UTN/profesores
+cd /
+cd Examenes-UTN/
+tree
+cd ..
+tree /Examenes-UTN/
+cd
+cd pruebas/
+cat << EOF > devuelvePermiso.sh
+sudo chown -R osboxes:osboxes /Examenes-UTN/alumno_1
+sudo chown -R osboxes:osboxes /Examenes-UTN/alumno_2
+sudo chown -R osboxes:osboxes /Examenes-UTN/alumno_3
+sudo chown -R osboxes:osboxes /Examenes-UTN/profesores
+sudo chmod -R 770 /Examenes-UTN/alumno_1
+sudo chmod -R 770 /Examenes-UTN/alumno_2
+sudo chmod -R 770 /Examenes-UTN/alumno_3
+sudo chmod -R 770 /Examenes-UTN/profesores
+EOF
+
+chmod 755 devuelvePermiso.sh 
+nano ./devuelvePermiso.sh 
+./puntoC.sh 
+cd /
+tree /Examenes-UTN/
+cd
+cd pruebas/
+./devuelvePermiso.sh 
+cd /
+tree /Examenes-UTN/
+cd
+cd pruebas/
+nano puntoC.sh 
+./puntoC.sh 
+./borraUsuario.sh 
+./devuelvePermiso.sh 
+tree /Examenes-UTN/
+cat /etc/groups
+cat /etc/group
+nano ./puntoC.sh 
+./puntoC.sh 
+cd
+su p1c2_2024_A1
+cd pruebas/
+./borraUsuario.sh 
+./devuelvePermiso.sh 
+cd /Examenes-UTN/
+tree
+sudo rm -rf alumno_1/validar.txt 
+tree
+sudo rm -rf alumno_2/validar.txt 
+sudo rm -rf alumno_3/validar.txt 
+sudo rm -rf profesores/validar.txt 
+cd
+cd pruebas/
+nano ./devuelvePermiso.sh 
+./puntoC.sh 
+cd /
+cd
+tree /Examenes-UTN/
+cd pruebas/
+./devuelvePermiso.sh 
+tree /Examenes-UTN/
+nano ./puntoC.sh 
+./puntoC.sh 
+./borraUsuario.sh 
+./devuelvePermiso.sh 
+tree /Examenes-UTN/
+clear
+nano ./puntoC.sh 
+./puntoC.sh 
+cat /etc/group
+ls -ld /Examenes-UTN/alumno_2
+./borraUsuario.sh 
+./devuelvePermiso.sh 
+tree /Examenes-UTN/
+cd
+cd pruebas/
+nano ./puntoC.sh 
+tree /Examenes-UTN/
+cd
+cd pruebas/
+cat << EOF > puntoC.sh
+#!/bin/bash
+EOF
+
+nano ./puntoC.sh 
+cd
+cd pruebas/
+ls
+nano ./puntoC.sh 
+cat << EOF > puntoD.sh
+#!/bin/bash
+EOF
+
+chmod 755 ./puntoD.sh 
+nano puntoD.sh 
+cd /
+cd
+cd pruebas/
+tree /Examenes-UTN/
+nano ./puntoD.sh 
+./puntoD.sh 
+cd
+ls
+ls -l
+pwd
+nano ./puntoD.sh 
+cd pruebas/
+ls
+nano ./puntoD.sh 
+./puntoD.sh 
+cd
+ls
+nano ./puntoD.sh 
+cd pruebas/
+nano ./puntoD.sh 
+./puntoD.sh 
+cd ..
+ls
+ls /home
+tree /Examenes-UTN/
+tree /home/Estructura_Asimetrica/
+sudo rm -rf /home/Estructura_Asimetrica/
+ls /home
+tree /home/osboxes/
+celar
+clear
+cd pruebas/
+./puntoD.sh 
+ls /home/
+tree /home/Estructura_Asimetrica/
+nano ./puntoD.sh 
+ls /home
+sudo rm -rf /home/Estructura_Asimetrica/
+./puntoD.sh 
+cd
+ls
+ls -ld ~
+umask
+nano ./puntoD.sh 
+cd pruebas/
+nano ./puntoD.sh 
+./puntoD.sh 
+nano ./puntoD.sh 
+./puntoD.sh 
+ls
+cd
+ls
+cd /
+ls
+sudo rm -rf Estructura_Asimetrica/
+cd
+mkdir pr
+ls
+cd pr
+sudo rm -rf pr
+cd
+ls
+sudo rm -rf pr
+ls
+cd pruebas/
+nano ./puntoD.sh 
+cd
+sudo mkdir -p /Estructura_Asimetrica/{correo/{cartas_{1..10},cartero_{1..5}},clientes/cartas_{1..10}}
+ls
+cd /
+sudo rm -rf Estructura_Asimetrica/
+cd
+sudo mkdir -p Estructura_Asimetrica/{correo/{cartas_{1..10},cartero_{1..5}},clientes/cartas_{1..10}}
+ls
+sudo rm -rf Estructura_Asimetrica/
+ls
+cd pruebas/
+nano ./puntoD.sh 
+./puntoD.sh 
+cd
+ls
+ls /home/
+cd /
+ls
+cd
+cd pruebas/
+ls
+sudo rm -rf Estructura_Asimetrica/
+ls
+nano ./puntoD.sh 
+./puntoD.sh 
+cd
+ls
+cd pruebas/
+ls
+cd home/
+ls
+cd ..
+sudo rm -rf home
+ls
+nano ./puntoD
+nano ./puntoD.sh 
+./puntoD.sh 
+cd
+ls
+ls /home
+sudo rm -rf /home/Estructura_Asimetrica/
+cd pruebas/
+nano ./puntoD.sh 
+./puntoD.sh 
+sudo mkdir -p /home/Estructura_Asimetrica/{correo/{cartas_{1..10},cartero_{1..5}},clientes/cartas_{1..10}}
+ls /home
+sudo rm -rf /home/Estructura_Asimetrica/
+./puntoD.sh 
+cd
+tree /home/Estructura_Asimetrica/ --noreport | pr -T -s' ' -w 80 --column 4
+tree /home/Estructura_Asimetrica/
+sudo rm -rf /home/Estructura_Asimetrica/
+ls
+cd pruebas/
+cat << EOF > puntoE.sh
+#!/bin/bash
+EOF
+
+chmod 755 ./puntoE.sh 
+cd
+/proc/meminfo
+sudo /proc/meminfo
+sudo cat /proc/meminfo
+sudo cat /proc/meminfo | head
+sudo cat /proc/meminfo | head -1
+dmidecode -t chassis
+sudo dmidecode -t chassis
+sudo dmidecode -t chassis | grep "Chassis information" 
+sudo dmidecode -t chassis | grep "Chassis Information" 
+man grep
+sudo dmidecode -t chassis | grep -i "chassis information" 
+sudo dmidecode -t chassis | grep -i chassis information 
+sudo dmidecode -t chassis | grep -i "chassis information" | grep -i "manufacturer" 
+sudo dmidecode -t chassis | grep -i "chassis information manufacturer"
+sudo dmidecode -t chassis | grep -i "manufacturer"
+sudo dmidecode -t chassis | head
+sudo dmidecode -t chassis | head -5
+sudo dmidecode -t chassis | head -8
+sudo dmidecode -t chassis | head -8 | tail -2
+sudo dmidecode -t chassis | head -8 | tail -3
+sudo dmidecode -t chassis | head -7 | tail -3
+sudo dmidecode -t chassis | head -9 | tail -3
+sudo dmidecode -t chassis | head -9 | tail -4
+sudo dmidecode -t chassis | head -9 | tail -2
+sudo dmidecode -t chassis | head -9 | tail -3
+sudo dmidecode -t chassis | head -9 | tail 4
+sudo dmidecode -t chassis | head -9 | tail -1
+sudo dmidecode -t chassis | head -9 | tail -4
+sudo dmidecode -t chassis | head -9 | tail -6
+sudo dmidecode -t chassis | head -9 | tail -4
+sudo dmidecode -t chassis | head -9 | tail -3
+sudo dmidecode -t chassis | head -10 | tail -3
+sudo dmidecode -t chassis | head -5 | tail -3
+sudo dmidecode -t chassis | head -3 | tail -3
+sudo dmidecode -t chassis | head -3 | tail -2
+sudo dmidecode -t chassis | head -7 | tail -2
+cd pruebas/
+ls
+nano ./puntoE.sh 
+./puntoE.sh 
+ls
+cat filtro_basico.txt 
+cat << EOF > puntoF.sh
+#!/bin/bash
+EOF
+
+chmod 755 ./puntoF.sh 
+ls
+curl -s ifconfig.me
+sudo apt install curl
+curl -s ifconfig.me
+exit
+cd repogit/
+git remote get-url origin
+cd UTNFRA_SO_1P2C_2024_Martin/
+git remote get-url origin
+echo git remote get-url origin > /home/pruebas/filtro_avanzado.txt
+cat git remote get-url origin > /home/pruebas/filtro_avanzado.txt
+pwd
+cd
+cd pruebas/
+pwd
+cd
+cd repogit/
+cd UTNFRA_SO_1P2C_2024_Martin/
+cat git remote get-url origin > /home/osboxes/pruebas/filtro_avanzado.txt
+echo git remote get-url origin > /home/osboxes/pruebas/filtro_avanzado.txt
+cd
+cd pruebas/
+ls
+cat filtro_avanzado.txt 
+cd
+cd repogit/
+cd UTNFRA_SO_1P2C_2024_Martin/
+git remote get-url origin > /home/osboxes/pruebas/filtro_avanzado.txt
+cd
+cd pruebas/
+ls
+cat filtro_avanzado.txt 
+nano ./puntoD.sh 
+cd
+pwd
+cd
+cd pruebas/
+nano ./puntoD.sh 
+./puntoD.sh 
+cd
+ls
+tree Estructura_Asimetrica/
+ls /home
+cd
+cd pruebas/
+cd 
+cd repogit/
+cd UTNFRA_SO_1P2C_2024_Martin/
+pwd
+cd
+cd pruebas/
+ls
+sudo rm -rf filtro_avanzado.txt 
+nano ./puntoF.sh 
+./puntoF.sh 
+ls
+cat filtro_avanzado.txt 
+sudo rm -rf filtro_avanzado.txt 
+nano ./puntoF.sh 
+./puntoF.sh 
+ls
+cd
+cd repogit/
+cd UTNFRA_SO_1P2C_2024_Martin/
+ls
+cat filtro_avanzado.txt 
+echo "url" git remote get-url origin
+echo "url" cat git remote get-url origin
+git remote get-url origin
+ls
+sudo rm -rf filtro_avanzado.txt 
+ls
+cd ]
+cd
+cd pruebas/
+nano ./puntoF.sh 
+./puntoF.sh 
+ls
+cd 
+cd repogit/
+cd UTNFRA_SO_1P2C_2024_Martin/
+git remote get-url origin
+echo git remote get-url origin
+cat git remote get-url origin > f.txt
+git remote get-url origin > f.txt
+ls
+cat f.txt 
+echo "url" git remote get-url origin > f.txt
+ls
+cat f.txt 
+sudo rm -rf f.txt 
+cd
+cd pruebas/
+pwd
+nano ./puntoF.sh 
+./puntoF.sh 
+pwd
+nano ./puntoF.sh 
+./puntoF.sh 
+ls
+cat filtro_avanzado.txt 
+whoami
+nano ./puntoF.sh 
+./puntoF.sh 
+ls
+cat filtro_avanzado.txt 
+nano ./puntoF.sh 
+./puntoF.sh 
+cat filtro_avanzado.txt 
+nano ./puntoF.sh 
+./puntoF.sh 
+cat filtro_avanzado.txt 
+nano ./puntoF.sh 
+echo "usuario: " whoami > filtro_avanzado.txt 
+cat filtro_avanzado.txt 
+sudo rm -rf filtro_avanzado.txt 
+echo "usuario: " whoami > filtro_avanzado.txt 
+cat filtro_avanzado.txt 
+nano ./puntoF.sh 
+ls
+sudo rm -rf filtro_avanzado.txt 
+./puntoF.sh 
+cat filtro_avanzado.txt 
+nano ./puntoF.sh 
+./puntoF.sh 
+cat filtro_avanzado.txt 
+nano ./puntoF.sh 
+./puntoF.sh 
+cat filtro_avanzado.txt 
+cd
+cd pruebas/
+ls
+exit
+cd pruebas/
+ls
+nano ./puntoC.sh 
+lsblk
+cd
+exit
+lsblk
+fdisk /dev/sdc
+sudo fdisk /dev/sdc
+lsblk
+sudo fdisk /dev/sdc
+lsblk
+sudo /etc/fstab
+sudo /dev/fstab
+sudo nano /etc/fstab
+sudo /etc/fstab
+sudo fdisk /dev/sdc
+lsblk
+sudo mkdir /home/osboxes/discoC/fisica_{1..3},logica_{1..2}
+sudo mkdir -p /home/osboxes/discoC/fisica_{1..3},logica_{1..2}
+ls
+tree discoC
+sudo rm -rf discoC/
+ls
+sudo mkdir -p /home/osboxes/discoC/fisica_{1..3}/logica_{1..2}
+tree discoC/
+sudo mkdir -p /home/osboxes/discoC/{fisica_{1..3},logica_{1..2}}
+tree discoC/
+sudo rm -rf discoC/
+sudo mkdir -p /home/osboxes/discoC/{fisica_{1..3},logica_{1..2}}
+tree discoC/
+lsblk
+sudo fdisk /dev/sdc
+lsblk
+sudo mount /dev/sdc1 /home/osboxes/discoC/fisica_1
+sudo mount /dev/sdc1 /discoC/fisica_1
+lsblk
+cd pruebas/
+nano ./puntoB.sh 
+cd
+sudo mount /dev/sdc1 /discoC/fisica_1
+tree discoC/
+exit
+ls -ld discoC/
+ls -ld /discoC
+lsblk
+tree discoC/
+sudo mount /dev/sdc1 discoC/fisica_1
+sudo mount /dev/sdc1 /discoC/fisica_1
+dmesg
+sudo cat dmesg
+sudo dmesg
+clear
+sudo rm -rf discoC/
+sudo mkdir /home/osboxes/discoC/{fisica_{1..3},logica_{1..2}}
+sudo mkdir -p /home/osboxes/discoC/{fisica_{1..3},logica_{1..2}}
+tree discoC/
+sudo mount /dev/sdc1 /home/osboxes/discoC/fisica_1/
+sudo mount /dev/sdc1 /home/osboxes/discoC/fisica_1
+mkfs -t ext4 dev/sdc1
+mkfs -t ext4 /dev/sdc1
+sudo mkfs -t ext4 /dev/sdc1
+sudo mount /dev/sdc1 /home/osboxes/discoC/fisica_1
+lsblk
+sudo mkfs -t ext4 /dev/sdc2
+sudo mkfs -t ext4 /dev/sdc3
+sudo mkfs -t ext4 /dev/sdc5
+sudo mkfs -t ext4 /dev/sdc6
+sudo mount /dev/sdc2 /home/osboxes/discoC/fisica_2
+sudo mount /dev/sdc3 /home/osboxes/discoC/fisica_3
+sudo mount /dev/sdc5 /home/osboxes/discoC/logica_1
+sudo mount /dev/sdc6 /home/osboxes/discoC/logica_2
+lsblk
+dmesg
+sudo dmesg
+clear
+lsblk
+sudo umount /dev/sdc6 /home/osboxes/discoC/logica_2
+lsblk
+sudo umount /dev/sdc5 /home/osboxes/discoC/logica_1
+sudo umount /dev/sdc1 /home/osboxes/discoC/fisica_1
+sudo umount /dev/sdc2 /home/osboxes/discoC/fisica_2
+sudo umount /dev/sdc3 /home/osboxes/discoC/fisica_3
+lsblk
+fdsidk /dev/sdc
+sudo fdisk /dev/sdc
+lsblk
+sudo reboot
+sudo fdisk /dev/sdc
+sudo mount /dev/sdc1 /home/osboxes/discoC/fisica_1
+sudo mkfs -t ext4 /dev/sdc1
+sudo mount /dev/sdc1 /home/osboxes/discoC/fisica_1
+lsblk
+sudo umount /dev/sdc1 /home/osboxes/discoC/fisica_1
+lsblk
+sudo fdisk /dev/sdc
+lsblk
+cd pruebas/
+nano ./puntoA
+nano ./puntoA.sh 
+nano ./puntoB.sh 
+nano ./puntoC.sh 
+exit
+sudo reboot
+sudo apt install firefox
+sudo apt upgrade
+sudo apt update
+sudo apt install libpng-dev libxcursor-dev
+git clone git@github.com:eworm-de/xcur2png.git
+cd xcur2png/
+./configure
+make
+sudo make install
+cd
+ls
+sudo rm -rf xcur2png/
+ls
+tree Estructura_Asimetrica/
+sudo reboot
+ls -l
+cd /ssh
+ls -la
+sudo cat /etc/ssh/
+sudo cat .ssh/
+cd .ssh/
+ls
+sudo cat id_ed25519.pub 
+cd
+cd repogit/
+cd UTNFRA_SO_1P2C_2024_Martin/
+git status
+cd repogit/
+ls
+tree UTNFRA_SO_1P2C_2024_Martin/
+nano ./Punto_A.sh
+nano ./Punto_A.sh 
+chmod 755 Punto_A.sh 
+nano ./Punto_A.sh 
+cd
+cd pruebas/
+./borraMount.sh 
+./borraParticiones.sh 
+cd 
+cd /
+ls
+sudo rm -rf Examenes-UTN/
+cd
+sudo nano /etc/fstab
+ls
+sudo rm -rf Estructura_Asimetrica/
+cd repogit/
+cd UTNFRA_SO_1P2C_2024_Martin/
+tree
+cd RTA_SCRIPT_Examen_20241004/
+cat Punto_A.sh 
+cd
+ls
+cd pruebas/
+ls
+cd
+cd repogit/
+ls
+sudo rm -rf Punto_A.sh 
+cd UTNFRA_SO_1P2C_2024_Martin/
+cd RTA_SCRIPT_Examen_20241004/
+ls
+nano Punto_A.sh 
+ls -l
+chmod 755 Punto_A.sh 
+ls -l
+nano Punto_B.sh 
+chmod 755 Punto_B.sh 
+ls
+nano Punto_C.sh 
+chmod 755 Punto_C.sh 
+nano Punto_A.sh 
+nano Punto_B.sh 
+nano Punto_C.sh 
+ls
+nano Punto_C.sh 
+nano Punto_D.sh 
+ls
+chmod 755 Punto_D.sh 
+ls
+nano Punto_E.sh 
+ls
+chmod 755 Punto_E.sh 
+ls
+cd repogit/
+cd UTNFRA_SO_1P2C_2024_Martin/
+ls
+cd RTA_SCRIPT_Examen_20241004/
+ls
+nano Punto_E.sh 
+nano Punto_F.sh 
+chmod 755 Punto_F.sh 
+ls
+nano Punto_E.sh 
+cd ..
+ls
+cd RTA_SCRIPT_Examen_20241004/
+nano Punto_E.sh 
+nano Punto_F.sh 
+./Punto_E.sh 
+cd ..
+ls
+cd RTA_ARCHIVOS_Examen_20241004/
+ls
+pwd
+cd
+sudo cat /etc/fstab
+sudo nano /etc/fstab
+sudo cat /etc/fstab
+cd repogit/
+cd UTNFRA_SO_1P2C_2024_Martin/
+ls
+cd RTA_SCRIPT_Examen_20241004/
+nano ./Punto_E.sh 
+./Punto_E.sh 
+nano ./Punto_E.sh 
+./Punto_E.sh 
+cd .. 
+ls
+RTA_ARCHIVOS_Examen_20241004/
+cd RTA_ARCHIVOS_Examen_20241004/
+ls
+cat filtro_basico.txt 
+cd ..
+cd RTA_SCRIPT_Examen_20241004/
+nano ./Punto_F.sh 
+nano ./Punto_E.sh 
+nano ./Punto_F.sh 
+./Punto_F.sh 
+cd ..
+cd RTA_ARCHIVOS_Examen_20241004/
+ls
+cat filtro_avanzado.txt 
+sudo rm -rf filtro_avanzado.txt 
+sudo rm -rf filtro_basico.txt 
+ls
+cd ..
+git status
+cd RTA_SCRIPT_Examen_20241004/
+./Punto_E.sh 
+./Punto_F.sh 
+cd ..
+cd RTA_ARCHIVOS_Examen_20241004/
+ls
+cd ..
+ls
+nano README.md 
+git status
+git add .
+git commit "ADD: agrego los scripts con la resolucion del examen"
+git commit -m "ADD: agrego los scripts con la resolucion del examen"
+git push
+cd 
+exit
+cd repogit/
+ls
+tree UTNFRA_SO_1P2C_2024_Martin/
+exit
+history -a
+history
+cd repogit/
+cd UTNFRA_SO_1P2C_2024_Martin/
+ls
+touch historial_comandos_Martin.txt
+ls
