@@ -13,21 +13,11 @@ ssh-keygen -t ed25519
 ls -l
 ls -la
 ls -al ~/.ssh
-cat id_ed25519.pub
-cd .ssh/
-cat id_ed25519.pub 
-cd ..
-ssh -T git@github.com
-git config --global user.name "emmanuelmartindavid"
-git config --global user.email "emmanuel.david.martin77@gmail.com"
 ssh -T git@github.com
 ls
 mkdir repogit
 ls
 cd repogit/
-git clone https://github.com/upszot/UTN-FRA_SO_Examenes.git
-git clone git@github.com:emmanuelmartindavid/UTNFRA_SO_1P2C_2024_Martin.git
-ls
 cd UTNFRA_SO_1P2C_2024_Martin/
 tree
 cd ..
