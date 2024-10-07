@@ -1,17 +1,21 @@
 #!/bin/bash
-#Particionamiento en 10 partes del disco.
+#Particionamiento, formateo, montaje del disco.
 lsblk
+#Pide que se ingrese la letra correspondiente al disco, valida que no sea disco sda, propio del sistema. 
 read -p "Ingrese la letra de su disco a particionar, formatear y montar: " disco
 if [ "$disco" == "a" ]; then
   echo "ERROR. No puede particionar este disco!"
   exit 1
 
 fi
+
+#VaLida que se cree primero el directorio correspondiente antes de ejecutar los comandos correspondientes. 
 if [ ! -d "/Examenes-UTN" ]; then 
   echo "ERROR. Primero debe crear el directorio Examenes-UTN. Ejecute script Punto_A!"
   exit 1
 
 fi
+#VaLida que se exista el disco a particionar, formatear, montar. 
 if ! lsblk | grep -q "^sd$disco"; then
   echo "ERROR. El disco /dev/sd$disco no existe."
   exit 1
@@ -61,13 +65,14 @@ n
 w
 EOF
 
+#Da formato ext4 a las particiones.
 for i in {1..11}; do
   if [ $i -ne 4 ]; then
      sudo mkfs -t ext4 /dev/sd${disco}${i}
   fi
 done
 
-
+#Genera el montaje y montaje persistente de las particiones.
 alumno=1
 parcial=1
 
